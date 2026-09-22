@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Speedy Auto Repair · Charlotte</title>
+  <meta name="description" content="Speedy Auto Repair — shop, mobile, roadside, tint. Charlotte NC. Call 704-835-2577 or text START to 828-454-3014.">
+  <meta name="theme-color" content="#0b0b0c">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b0b0c;--card:#141416;--gold:#e6b325;--gold-2:#f3d36a;--ink:#f5f2ea;--muted:#b8b3a6;--line:#2a2a2e}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif}
+    .wrap{max-width:430px;margin:0 auto;padding:18px 16px 40px}header{text-align:center}
+    .badge{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid #3a3014;background:#1a1608;padding:6px 10px;border-radius:999px}
+    h1{font-family:Bebas Neue,sans-serif;font-size:42px;margin:14px 0 6px}h1 span{color:var(--gold)}
+    .sub,.meta,.note{color:var(--muted);font-size:14px;line-height:1.5}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 12px}
+    a.btn,button.btn{display:flex;align-items:center;justify-content:center;text-decoration:none;border:0;border-radius:14px;padding:14px 12px;font-weight:700;font:inherit;cursor:pointer;color:inherit}
+    .btn-gold{background:linear-gradient(180deg,var(--gold-2),var(--gold));color:#1a1404}.btn-ghost{background:#1c1c20;color:var(--ink);border:1px solid var(--line)}
+    .btn-full{width:100%;margin:10px 0 0}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}
+    .card h2{margin:0 0 10px;font-size:15px;text-transform:uppercase;color:var(--gold)}
+    .row3{display:grid;grid-template-columns:72px 1fr 1fr;gap:8px}
+    label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}
+    input,select,textarea{width:100%;background:#0f0f12;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit}
+    textarea{min-height:80px}.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+    .pill{font-size:12px;background:#1c1c20;border:1px solid var(--line);padding:6px 8px;border-radius:999px}
+    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+    .tab{border:1px solid var(--line);background:#101012;color:var(--ink);border-radius:12px;padding:12px;font-weight:700}
+    .tab.on{border-color:#5a4714;background:#1a1608;color:var(--gold-2)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="badge">Charlotte · Shop + Mobile + Roadside</div>
+      <h1>SPEEDY <span>AUTO</span></h1>
+      <p class="sub">Customers book work. Mechanics apply. Same page.</p>
+    </header>
+    <a class="btn btn-gold btn-full" href="tel:+17048352577">Call 704-835-2577</a>
+    <div class="actions">
+      <a class="btn btn-ghost" href="sms:+18284543014?&amp;body=START">24hr text support</a>
+      <a class="btn btn-ghost" href="https://maps.google.com/?q=6016+McDaniel+Lane+Suite+D+Charlotte+NC+28213">Directions</a>
+    </div>
+    <div class="actions">
+      <a class="btn btn-ghost" href="https://portal.ari.app/b/kCHD15A2N0Vobeo5jdgZhwQBJTA3">Book online</a>
+      <button class="btn btn-ghost" type="button" id="shareBtn">Share</button>
+    </div>
+    <div class="actions">
+      <a class="btn btn-ghost" href="https://speedy-network.vercel.app/apply">Apply as mechanic</a>
+      <a class="btn btn-ghost" href="sms:+18284543014?&amp;body=APPLY">Text APPLY</a>
+    </div>
+    <p class="note" style="text-align:center;margin:0 0 8px">Hired techs let us cover more cities. Not hired until Speedy reviews.</p>
+    <section class="card">
+      <h2>What we do</h2>
+      <p class="meta">Shop or mobile · roadside · tint. 6016 McDaniel Lane Suite D.</p>
+      <div class="pills"><span class="pill">Mechanic</span><span class="pill">Roadside</span><span class="pill">Tint</span><span class="pill">Front brakes from $375</span></div>
+    </section>
+    <div class="tabs">
+      <button class="tab on" type="button" id="tabCust">I need service</button>
+      <button class="tab" type="button" id="tabHire">I want to work</button>
+    </div>
+    <section class="card" id="hireBox" style="display:none">
+      <h2>Join the network</h2>
+      <p class="meta">Mechanic, tint, tow, or detail. Apply from any city. That is how we widen the service area.</p>
+      <a class="btn btn-gold btn-full" href="https://speedy-network.vercel.app/apply">Open apply form</a>
+      <a class="btn btn-ghost btn-full" href="sms:+18284543014?&amp;body=APPLY">Text APPLY to 828-454-3014</a>
+    </section>
+    <section class="card" id="hoursBox">
+      <h2>Hours &amp; minimums</h2>
+      <p class="meta">Shop 8 AM–6 PM · After 5 / $125 min · Roadside $85 then $125 · Shop about 20% under mobile</p>
+      <div class="pills"><span class="pill">Diag from $85</span><span class="pill">Labor $150/hr</span></div>
+    </section>
+    <section class="card" id="custBox">
+      <div id="formWrap">
+        <h2>Request help</h2>
+        <form id="req" autocomplete="on">
+          <label>I need</label>
+          <select id="need" autocomplete="off"><option>Estimate</option><option>Shop drop-off</option><option>Mobile service</option><option>Roadside / stranded</option></select>
+          <label>Name</label><input id="name" name="name" type="text" autocomplete="name" required="">
+          <label>Phone</label><input id="phone" name="tel" type="tel" autocomplete="tel" required="">
+          <div class="row3">
+            <div><label>Year</label><input id="year" maxlength="4" autocomplete="off"></div>
+            <div><label>Make</label><input id="make" autocomplete="off"></div>
+            <div><label>Model</label><input id="model" autocomplete="off"></div>
+          </div>
+          <label>VIN (optional)</label><input id="vin" maxlength="17" autocomplete="off">
+          <label>Where is the vehicle?</label>
+          <input id="where" name="street-address" autocomplete="street-address">
+          <label>Day that works</label>
+          <select id="day" autocomplete="off"><option value="">Flexible</option><option>Today</option><option>Tomorrow</option><option>This week</option><option>Next week</option></select>
+          <label>Time that works</label>
+          <select id="time" autocomplete="off"><option value="">Flexible</option><option>Morning 8–12</option><option>Afternoon 12–5</option><option>After 5 ($125 min)</option></select>
+          <label>Other day / time note</label>
+          <input id="whenote" autocomplete="off">
+          <label>What's going on</label><textarea id="what" autocomplete="off"></textarea>
+          <button class="btn btn-gold btn-full" type="submit">Save request</button>
+          <p class="note">Stays here. Next you pick text, call, portal, or email.</p>
+        </form>
+      </div>
+      <div id="done" style="display:none">
+        <h2>Request ready</h2>
+        <p class="meta">Nothing went to email unless you tap Email shop.</p>
+        <a class="btn btn-gold btn-full" href="sms:+18284543014?&amp;body=START">24hr text support</a>
+        <a class="btn btn-ghost btn-full" href="tel:+17048352577">Call 704-835-2577</a>
+        <a class="btn btn-ghost btn-full" href="https://portal.ari.app/b/kCHD15A2N0Vobeo5jdgZhwQBJTA3">Book online</a>
+        <button class="btn btn-ghost btn-full" type="button" id="emailBtn">Email shop (optional)</button>
+      </div>
+    </section>
+    <p class="meta" style="text-align:center">6016 McDaniel Lane Suite D · Charlotte · SpeedyAuto704.com</p>
+  </div>
+  <script>
+    function bodyText(){return 'Need: '+need.value+'\nName: '+name.value+'\nPhone: '+phone.value+'\nYear: '+year.value+'\nMake: '+make.value+'\nModel: '+model.value+'\nVIN: '+vin.value.trim().toUpperCase()+'\nLocation: '+where.value.trim()+'\nPreferred day: '+(day.value||'Flexible')+'\nPreferred time: '+(time.value||'Flexible')+'\nWhen note: '+whenote.value.trim()+'\nProblem: '+what.value;}
+    function showDone(){formWrap.style.display='none';done.style.display='block'}
+    if(sessionStorage.getItem('speedy-card-sent')==='1')showDone();
+    tabCust.onclick=function(){tabCust.classList.add('on');tabHire.classList.remove('on');custBox.style.display='block';hoursBox.style.display='block';hireBox.style.display='none'}
+    tabHire.onclick=function(){tabHire.classList.add('on');tabCust.classList.remove('on');custBox.style.display='none';hoursBox.style.display='none';hireBox.style.display='block'}
+    shareBtn.onclick=function(){var d={title:'Speedy Auto Repair',text:'Speedy Auto Charlotte. Text START or APPLY to 828-454-3014.',url:location.href};if(navigator.share)navigator.share(d).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(location.href);};
+    req.onsubmit=function(e){e.preventDefault();sessionStorage.setItem('speedy-card-sent','1');sessionStorage.setItem('speedy-card-body',bodyText());showDone();};
+    emailBtn.onclick=function(){var body=sessionStorage.getItem('speedy-card-body')||bodyText();location.href='mailto:speedyapointments@gmail.com?subject='+encodeURIComponent('estimate request')+'&body='+encodeURIComponent(body);};
+  </script>
+</body>
+</html>
