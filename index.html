@@ -6,7 +6,7 @@
   <title>Speedy Auto Repair · Charlotte</title>
   <meta name="description" content="Speedy Auto Repair — shop, mobile, roadside, tint. Charlotte NC. Call 704-835-2577 or text START to 828-454-3014.">
   <meta name="theme-color" content="#0b0b0c">
-  <!-- deploy: 2026-09-22 more services -->
+  <!-- deploy: 2026-09-22 clickable service tickets -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#0b0b0c;--card:#141416;--gold:#e6b325;--gold-2:#f3d36a;--ink:#f5f2ea;--muted:#b8b3a6;--line:#2a2a2e}
@@ -24,7 +24,8 @@
     label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}
     input,select,textarea{width:100%;background:#0f0f12;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit}
     textarea{min-height:80px}.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-    .pill{font-size:12px;background:#1c1c20;border:1px solid var(--line);padding:6px 8px;border-radius:999px}
+    .pill{font-size:12px;background:#1c1c20;border:1px solid var(--line);padding:6px 8px;border-radius:999px;color:var(--ink);font:inherit;cursor:pointer}
+    .pill.on{border-color:#5a4714;background:#1a1608;color:var(--gold-2)}
     .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
     .tab{border:1px solid var(--line);background:#101012;color:var(--ink);border-radius:12px;padding:12px;font-weight:700}
     .tab.on{border-color:#5a4714;background:#1a1608;color:var(--gold-2)}
@@ -53,28 +54,30 @@
     <p class="note" style="text-align:center;margin:0 0 8px">Hired techs let us cover more cities. Not hired until Speedy reviews.</p>
     <section class="card">
       <h2>What we do</h2>
-      <p class="meta">Shop or mobile · 6016 McDaniel Lane Suite D.</p>
-      <div class="pills">
-        <span class="pill">Mobile mechanic</span>
-        <span class="pill">Roadside service</span>
-        <span class="pill">Window tint</span>
-        <span class="pill">Brakes</span>
-        <span class="pill">Shocks & struts</span>
-        <span class="pill">Battery replacement</span>
-        <span class="pill">Jump start</span>
-        <span class="pill">Lockout</span>
-        <span class="pill">Diagnostics</span>
-        <span class="pill">Check engine light</span>
-        <span class="pill">Oil change</span>
-        <span class="pill">Tune-up</span>
-        <span class="pill">A/C repair</span>
-        <span class="pill">Cooling system</span>
-        <span class="pill">Tires</span>
-        <span class="pill">Starter & alternator</span>
-        <span class="pill">Spark plugs</span>
-        <span class="pill">Belts & hoses</span>
-        <span class="pill">Fluids & filters</span>
-        <span class="pill">Suspension</span>
+      <p class="meta">Tap a service to start a request. Shop or mobile · 6016 McDaniel Lane Suite D.</p>
+      <div class="pills" id="svcPills">
+        <button class="pill" type="button" data-job="Mobile mechanic" data-need="Mobile service">Mobile mechanic</button>
+        <button class="pill" type="button" data-job="Roadside service" data-need="Roadside / stranded">Roadside service</button>
+        <button class="pill" type="button" data-job="Window tint" data-need="Estimate">Window tint</button>
+        <button class="pill" type="button" data-job="Brakes" data-need="Estimate">Brakes</button>
+        <button class="pill" type="button" data-job="Shocks & struts" data-need="Estimate">Shocks & struts</button>
+        <button class="pill" type="button" data-job="Battery replacement" data-need="Mobile service">Battery replacement</button>
+        <button class="pill" type="button" data-job="Jump start" data-need="Roadside / stranded">Jump start</button>
+        <button class="pill" type="button" data-job="Lockout" data-need="Roadside / stranded">Lockout</button>
+        <button class="pill" type="button" data-job="Diagnostics" data-need="Estimate">Diagnostics</button>
+        <button class="pill" type="button" data-job="Check engine light" data-need="Estimate">Check engine light</button>
+        <button class="pill" type="button" data-job="Oil change" data-need="Shop drop-off">Oil change</button>
+        <button class="pill" type="button" data-job="Tune-up" data-need="Estimate">Tune-up</button>
+        <button class="pill" type="button" data-job="A/C repair" data-need="Estimate">A/C repair</button>
+        <button class="pill" type="button" data-job="Cooling system" data-need="Estimate">Cooling system</button>
+        <button class="pill" type="button" data-job="Tires" data-need="Mobile service">Tires</button>
+        <button class="pill" type="button" data-job="Starter & alternator" data-need="Estimate">Starter & alternator</button>
+        <button class="pill" type="button" data-job="Spark plugs" data-need="Estimate">Spark plugs</button>
+        <button class="pill" type="button" data-job="Belts & hoses" data-need="Estimate">Belts & hoses</button>
+        <button class="pill" type="button" data-job="Fluids & filters" data-need="Shop drop-off">Fluids & filters</button>
+        <button class="pill" type="button" data-job="Suspension" data-need="Estimate">Suspension</button>
+        <button class="pill" type="button" data-job="Alignment" data-need="Shop drop-off">Alignment</button>
+        <button class="pill" type="button" data-job="Headlights" data-need="Estimate">Headlights</button>
       </div>
     </section>
     <div class="tabs">
@@ -90,12 +93,14 @@
     <section class="card" id="hoursBox">
       <h2>Hours & minimums</h2>
       <p class="meta">Shop 8 AM–6 PM · After 5 / $125 min · Roadside $85 then $125 · Shop about 20% under mobile</p>
-      <div class="pills"><span class="pill">Diag from $85</span><span class="pill">Labor $150/hr</span></div>
+      <div class="pills"><span class="pill" style="cursor:default">Diag from $85</span><span class="pill" style="cursor:default">Labor $150/hr</span></div>
     </section>
     <section class="card" id="custBox">
       <div id="formWrap">
         <h2>Request help</h2>
         <form id="req" autocomplete="on">
+          <label>Service</label>
+          <input id="job" name="job" type="text" autocomplete="off" placeholder="Tap a service above or type it">
           <label>I need</label>
           <select id="need" autocomplete="off"><option>Estimate</option><option>Shop drop-off</option><option>Mobile service</option><option>Roadside / stranded</option></select>
           <label>Name</label><input id="name" name="name" type="text" autocomplete="name" required="">
@@ -114,7 +119,7 @@
           <select id="time" autocomplete="off"><option value="">Flexible</option><option>Morning 8–12</option><option>Afternoon 12–5</option><option>After 5 ($125 min)</option></select>
           <label>Other day / time note</label>
           <input id="whenote" autocomplete="off">
-          <label>What's going on</label><textarea id="what" autocomplete="off"></textarea>
+          <label>What's going on</label><textarea id="what" autocomplete="off" placeholder="Noise, warning light, how long it's been happening..."></textarea>
           <button class="btn btn-gold btn-full" type="submit">Save request</button>
           <p class="note">Stays here. Next you pick text, call, portal, or email.</p>
         </form>
@@ -122,7 +127,7 @@
       <div id="done" style="display:none">
         <h2>Request ready</h2>
         <p class="meta">Nothing went to email unless you tap Email shop.</p>
-        <a class="btn btn-gold btn-full" href="sms:+18284543014?&body=START">24hr text support</a>
+        <a class="btn btn-gold btn-full" id="doneText" href="sms:+18284543014?&body=START">24hr text support</a>
         <a class="btn btn-ghost btn-full" href="tel:+17048352577">Call 704-835-2577</a>
         <a class="btn btn-ghost btn-full" href="https://portal.ari.app/b/kCHD15A2N0Vobeo5jdgZhwQBJTA3">Book online</a>
         <button class="btn btn-ghost btn-full" type="button" id="emailBtn">Email shop (optional)</button>
@@ -131,14 +136,27 @@
     <p class="meta" style="text-align:center">6016 McDaniel Lane Suite D · Charlotte · SpeedyAuto704.com</p>
   </div>
   <script>
-    function bodyText(){return 'Need: '+need.value+'\nName: '+name.value+'\nPhone: '+phone.value+'\nYear: '+year.value+'\nMake: '+make.value+'\nModel: '+model.value+'\nVIN: '+vin.value.trim().toUpperCase()+'\nLocation: '+where.value.trim()+'\nPreferred day: '+(day.value||'Flexible')+'\nPreferred time: '+(time.value||'Flexible')+'\nWhen note: '+whenote.value.trim()+'\nProblem: '+what.value;}
-    function showDone(){formWrap.style.display='none';done.style.display='block'}
+    function showCust(){tabCust.classList.add('on');tabHire.classList.remove('on');custBox.style.display='block';hoursBox.style.display='block';hireBox.style.display='none';formWrap.style.display='block';done.style.display='none'}
+    function bodyText(){return 'Service: '+job.value+'\nNeed: '+need.value+'\nName: '+name.value+'\nPhone: '+phone.value+'\nYear: '+year.value+'\nMake: '+make.value+'\nModel: '+model.value+'\nVIN: '+vin.value.trim().toUpperCase()+'\nLocation: '+where.value.trim()+'\nPreferred day: '+(day.value||'Flexible')+'\nPreferred time: '+(time.value||'Flexible')+'\nWhen note: '+whenote.value.trim()+'\nProblem: '+what.value;}
+    function showDone(){formWrap.style.display='none';done.style.display='block';var pre='START\n'+bodyText();doneText.href='sms:+18284543014?&body='+encodeURIComponent(pre)}
     if(sessionStorage.getItem('speedy-card-sent')==='1')showDone();
-    tabCust.onclick=function(){tabCust.classList.add('on');tabHire.classList.remove('on');custBox.style.display='block';hoursBox.style.display='block';hireBox.style.display='none'}
-    tabHire.onclick=function(){tabHire.classList.add('on');tabCust.classList.remove('on');custBox.style.display='none';hoursBox.style.display='none';hireBox.style.display='block'}
+    tabCust.onclick=showCust;
+    tabHire.onclick=function(){tabHire.classList.add('on');tabCust.classList.remove('on');custBox.style.display='none';hoursBox.style.display='none';hireBox.style.display='block'};
+    document.getElementById('svcPills').onclick=function(e){
+      var b=e.target.closest('.pill'); if(!b||!b.dataset.job) return;
+      [].forEach.call(document.querySelectorAll('#svcPills .pill'),function(p){p.classList.remove('on')});
+      b.classList.add('on');
+      showCust();
+      job.value=b.dataset.job;
+      need.value=b.dataset.need||'Estimate';
+      if(!what.value.trim()) what.placeholder='Tell us more about '+b.dataset.job.toLowerCase();
+      sessionStorage.removeItem('speedy-card-sent');
+      document.getElementById('custBox').scrollIntoView({behavior:'smooth',block:'start'});
+      setTimeout(function(){name.focus()},250);
+    };
     shareBtn.onclick=function(){var d={title:'Speedy Auto Repair',text:'Speedy Auto Charlotte. Text START or APPLY to 828-454-3014.',url:location.href};if(navigator.share)navigator.share(d).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(location.href);};
     req.onsubmit=function(e){e.preventDefault();sessionStorage.setItem('speedy-card-sent','1');sessionStorage.setItem('speedy-card-body',bodyText());showDone();};
-    emailBtn.onclick=function(){var body=sessionStorage.getItem('speedy-card-body')||bodyText();location.href='mailto:speedyapointments@gmail.com?subject='+encodeURIComponent('estimate request')+'&body='+encodeURIComponent(body);};
+    emailBtn.onclick=function(){var body=sessionStorage.getItem('speedy-card-body')||bodyText();location.href='mailto:speedyapointments@gmail.com?subject='+encodeURIComponent((job.value||'estimate')+' request')+'&body='+encodeURIComponent(body);};
   </script>
 </body>
 </html>
