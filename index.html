@@ -6,7 +6,7 @@
   <title>Speedy Auto Repair · Charlotte</title>
   <meta name="description" content="Speedy Auto Repair — shop, mobile, roadside, tint. Charlotte NC. Call 704-835-2577 or text START to 828-454-3014.">
   <meta name="theme-color" content="#0b0b0c">
-  <!-- deploy: 2026-09-22 clickable service tickets -->
+  <!-- deploy: 2026-09-22 hire apply at end -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#0b0b0c;--card:#141416;--gold:#e6b325;--gold-2:#f3d36a;--ink:#f5f2ea;--muted:#b8b3a6;--line:#2a2a2e}
@@ -36,7 +36,7 @@
     <header>
       <div class="badge">Charlotte · Shop + Mobile + Roadside</div>
       <h1>SPEEDY <span>AUTO</span></h1>
-      <p class="sub">Customers book work. Mechanics apply. Same page.</p>
+      <p class="sub">Book shop, mobile, or roadside. Techs apply under I want to work.</p>
     </header>
     <a class="btn btn-gold btn-full" href="tel:+17048352577">Call 704-835-2577</a>
     <div class="actions">
@@ -47,11 +47,6 @@
       <a class="btn btn-ghost" href="https://portal.ari.app/b/kCHD15A2N0Vobeo5jdgZhwQBJTA3">Book online</a>
       <button class="btn btn-ghost" type="button" id="shareBtn">Share</button>
     </div>
-    <div class="actions">
-      <a class="btn btn-ghost" href="https://speedy-network.vercel.app/apply">Apply as mechanic</a>
-      <a class="btn btn-ghost" href="sms:+18284543014?&body=APPLY">Text APPLY</a>
-    </div>
-    <p class="note" style="text-align:center;margin:0 0 8px">Hired techs let us cover more cities. Not hired until Speedy reviews.</p>
     <section class="card">
       <h2>What we do</h2>
       <p class="meta">Tap a service to start a request. Shop or mobile · 6016 McDaniel Lane Suite D.</p>
@@ -85,10 +80,28 @@
       <button class="tab" type="button" id="tabHire">I want to work</button>
     </div>
     <section class="card" id="hireBox" style="display:none">
-      <h2>Join the network</h2>
-      <p class="meta">Mechanic, tint, tow, or detail. Apply from any city. That is how we widen the service area.</p>
-      <a class="btn btn-gold btn-full" href="https://speedy-network.vercel.app/apply">Open apply form</a>
-      <a class="btn btn-ghost btn-full" href="sms:+18284543014?&body=APPLY">Text APPLY to 828-454-3014</a>
+      <div id="hireFormWrap">
+        <h2>Join the network</h2>
+        <p class="meta">First step only. Name, phone, city, and trade. After this you get the full apply link, text APPLY, and how to track your app. Not hired until Speedy reviews.</p>
+        <form id="hireReq" autocomplete="on">
+          <label>Name</label><input id="hname" name="name" type="text" autocomplete="name" required="">
+          <label>Phone</label><input id="hphone" name="tel" type="tel" autocomplete="tel" required="">
+          <label>City</label><input id="hcity" autocomplete="address-level2" required="">
+          <label>Trade</label>
+          <select id="htrade" required=""><option value="">Select</option><option>Mechanic</option><option>Tint</option><option>Tow / roadside</option><option>Detail</option><option>Other</option></select>
+          <label>Years experience</label><input id="hyears" inputmode="numeric" autocomplete="off">
+          <label>Anything else</label><textarea id="hnote" autocomplete="off" placeholder="Tools, insurance, days you can work..."></textarea>
+          <button class="btn btn-gold btn-full" type="submit">Submit first step</button>
+        </form>
+      </div>
+      <div id="hireDone" style="display:none">
+        <h2>Next steps</h2>
+        <p class="meta">First step is in. Use these if we need more info, to finish the full application, or to check status. Not hired until Speedy reviews.</p>
+        <a class="btn btn-gold btn-full" id="hireApply" href="https://speedy-network.vercel.app/apply">Full apply form</a>
+        <a class="btn btn-ghost btn-full" id="hireText" href="sms:+18284543014?&body=APPLY">Text APPLY</a>
+        <a class="btn btn-ghost btn-full" id="hireTrack" href="sms:+18284543014?&body=TRACK">Track your application</a>
+        <a class="btn btn-ghost btn-full" id="hireMore" href="sms:+18284543014?&body=APPLY%20MORE">Further instructions</a>
+      </div>
     </section>
     <section class="card" id="hoursBox">
       <h2>Hours & minimums</h2>
@@ -137,9 +150,18 @@
   </div>
   <script>
     function showCust(){tabCust.classList.add('on');tabHire.classList.remove('on');custBox.style.display='block';hoursBox.style.display='block';hireBox.style.display='none';formWrap.style.display='block';done.style.display='none'}
+    function hireBody(){return 'TECH FIRST STEP\nName: '+hname.value+'\nPhone: '+hphone.value+'\nCity: '+hcity.value+'\nTrade: '+htrade.value+'\nYears: '+hyears.value+'\nNote: '+hnote.value}
+    function showHireDone(){
+      hireFormWrap.style.display='none'; hireDone.style.display='block';
+      var b=hireBody();
+      hireText.href='sms:+18284543014?&body='+encodeURIComponent('APPLY\n'+b);
+      hireTrack.href='sms:+18284543014?&body='+encodeURIComponent('TRACK\n'+b);
+      hireMore.href='sms:+18284543014?&body='+encodeURIComponent('APPLY MORE\n'+b);
+    }
     function bodyText(){return 'Service: '+job.value+'\nNeed: '+need.value+'\nName: '+name.value+'\nPhone: '+phone.value+'\nYear: '+year.value+'\nMake: '+make.value+'\nModel: '+model.value+'\nVIN: '+vin.value.trim().toUpperCase()+'\nLocation: '+where.value.trim()+'\nPreferred day: '+(day.value||'Flexible')+'\nPreferred time: '+(time.value||'Flexible')+'\nWhen note: '+whenote.value.trim()+'\nProblem: '+what.value;}
-    function showDone(){formWrap.style.display='none';done.style.display='block';var pre='START\n'+bodyText();doneText.href='sms:+18284543014?&body='+encodeURIComponent(pre)}
+    function showDone(){formWrap.style.display='none';done.style.display='block';doneText.href='sms:+18284543014?&body='+encodeURIComponent('START\n'+bodyText())}
     if(sessionStorage.getItem('speedy-card-sent')==='1')showDone();
+    if(sessionStorage.getItem('speedy-hire-sent')==='1')showHireDone();
     tabCust.onclick=showCust;
     tabHire.onclick=function(){tabHire.classList.add('on');tabCust.classList.remove('on');custBox.style.display='none';hoursBox.style.display='none';hireBox.style.display='block'};
     document.getElementById('svcPills').onclick=function(e){
@@ -154,8 +176,9 @@
       document.getElementById('custBox').scrollIntoView({behavior:'smooth',block:'start'});
       setTimeout(function(){name.focus()},250);
     };
-    shareBtn.onclick=function(){var d={title:'Speedy Auto Repair',text:'Speedy Auto Charlotte. Text START or APPLY to 828-454-3014.',url:location.href};if(navigator.share)navigator.share(d).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(location.href);};
+    shareBtn.onclick=function(){var d={title:'Speedy Auto Repair',text:'Speedy Auto Charlotte. Text START to 828-454-3014.',url:location.href};if(navigator.share)navigator.share(d).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(location.href);};
     req.onsubmit=function(e){e.preventDefault();sessionStorage.setItem('speedy-card-sent','1');sessionStorage.setItem('speedy-card-body',bodyText());showDone();};
+    hireReq.onsubmit=function(e){e.preventDefault();sessionStorage.setItem('speedy-hire-sent','1');sessionStorage.setItem('speedy-hire-body',hireBody());showHireDone();};
     emailBtn.onclick=function(){var body=sessionStorage.getItem('speedy-card-body')||bodyText();location.href='mailto:speedyapointments@gmail.com?subject='+encodeURIComponent((job.value||'estimate')+' request')+'&body='+encodeURIComponent(body);};
   </script>
 </body>
