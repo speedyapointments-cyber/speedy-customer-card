@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Speedy Auto Repair · Charlotte</title>
-  <meta name="description" content="Speedy Auto Repair — shop, mobile, roadside, tint. Charlotte NC. Call 704-835-2577 or text START to 828-454-3014.">
+  <title>Speedy Mobile Auto Repair · Charlotte</title>
+  <meta name="description" content="Speedy Mobile Auto Repair — shop, mobile, roadside, tint. Charlotte NC. Call 704-835-2577 or text START to 828-454-3014.">
   <meta name="theme-color" content="#0b0b0c">
-  <!-- deploy: 2026-09-22 hire apply at end -->
+  <!-- deploy: 2026-09-30 year/make/model dropdowns + VIN decode -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#0b0b0c;--card:#141416;--gold:#e6b325;--gold-2:#f3d36a;--ink:#f5f2ea;--muted:#b8b3a6;--line:#2a2a2e}
@@ -20,7 +20,8 @@
     .btn-gold{background:linear-gradient(180deg,var(--gold-2),var(--gold));color:#1a1404}.btn-ghost{background:#1c1c20;color:var(--ink);border:1px solid var(--line)}
     .btn-full{width:100%;margin:10px 0 0}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}
     .card h2{margin:0 0 10px;font-size:15px;text-transform:uppercase;color:var(--gold)}
-    .row3{display:grid;grid-template-columns:72px 1fr 1fr;gap:8px}
+    .row3{display:grid;grid-template-columns:88px 1fr 1fr;gap:8px}
+    select:disabled{opacity:.5}
     label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}
     input,select,textarea{width:100%;background:#0f0f12;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit}
     textarea{min-height:80px}.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
@@ -29,6 +30,7 @@
     .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
     .tab{border:1px solid var(--line);background:#101012;color:var(--ink);border-radius:12px;padding:12px;font-weight:700}
     .tab.on{border-color:#5a4714;background:#1a1608;color:var(--gold-2)}
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
   </style>
 </head>
 <body>
@@ -36,11 +38,11 @@
     <header>
       <div class="badge">Charlotte · Shop + Mobile + Roadside</div>
       <h1>SPEEDY <span>AUTO</span></h1>
-      <p class="sub">Book shop, mobile, or roadside. Techs apply under I want to work.</p>
+      <p class="sub">Shop, mobile, or roadside in Charlotte. Tap a service, fill it in, and it texts straight to us.</p>
     </header>
     <a class="btn btn-gold btn-full" href="tel:+17048352577">Call 704-835-2577</a>
     <div class="actions">
-      <a class="btn btn-ghost" href="sms:+18284543014?&body=START">24hr text support</a>
+      <a class="btn btn-ghost" href="sms:+18284543014?&body=START">Text us</a>
       <a class="btn btn-ghost" href="https://maps.google.com/?q=6016+McDaniel+Lane+Suite+D+Charlotte+NC+28213">Directions</a>
     </div>
     <div class="actions">
@@ -49,30 +51,15 @@
     </div>
     <section class="card">
       <h2>What we do</h2>
-      <p class="meta">Tap a service to start a request. Shop or mobile · 6016 McDaniel Lane Suite D.</p>
+      <p class="meta">Most requested. Tap one to start, or pick from the full list below. Shop or mobile · 6016 McDaniel Lane Suite D.</p>
       <div class="pills" id="svcPills">
-        <button class="pill" type="button" data-job="Mobile mechanic" data-need="Mobile service">Mobile mechanic</button>
-        <button class="pill" type="button" data-job="Roadside service" data-need="Roadside / stranded">Roadside service</button>
-        <button class="pill" type="button" data-job="Window tint" data-need="Estimate">Window tint</button>
-        <button class="pill" type="button" data-job="Brakes" data-need="Estimate">Brakes</button>
-        <button class="pill" type="button" data-job="Shocks & struts" data-need="Estimate">Shocks & struts</button>
-        <button class="pill" type="button" data-job="Battery replacement" data-need="Mobile service">Battery replacement</button>
-        <button class="pill" type="button" data-job="Jump start" data-need="Roadside / stranded">Jump start</button>
-        <button class="pill" type="button" data-job="Lockout" data-need="Roadside / stranded">Lockout</button>
-        <button class="pill" type="button" data-job="Diagnostics" data-need="Estimate">Diagnostics</button>
-        <button class="pill" type="button" data-job="Check engine light" data-need="Estimate">Check engine light</button>
-        <button class="pill" type="button" data-job="Oil change" data-need="Shop drop-off">Oil change</button>
-        <button class="pill" type="button" data-job="Tune-up" data-need="Estimate">Tune-up</button>
-        <button class="pill" type="button" data-job="A/C repair" data-need="Estimate">A/C repair</button>
-        <button class="pill" type="button" data-job="Cooling system" data-need="Estimate">Cooling system</button>
-        <button class="pill" type="button" data-job="Tires" data-need="Mobile service">Tires</button>
-        <button class="pill" type="button" data-job="Starter & alternator" data-need="Estimate">Starter & alternator</button>
-        <button class="pill" type="button" data-job="Spark plugs" data-need="Estimate">Spark plugs</button>
-        <button class="pill" type="button" data-job="Belts & hoses" data-need="Estimate">Belts & hoses</button>
-        <button class="pill" type="button" data-job="Fluids & filters" data-need="Shop drop-off">Fluids & filters</button>
-        <button class="pill" type="button" data-job="Suspension" data-need="Estimate">Suspension</button>
-        <button class="pill" type="button" data-job="Alignment" data-need="Shop drop-off">Alignment</button>
-        <button class="pill" type="button" data-job="Headlights" data-need="Estimate">Headlights</button>
+        <button class="pill" type="button" data-job="Diagnostics / check engine light">Check engine light</button>
+        <button class="pill" type="button" data-job="Brakes">Brakes</button>
+        <button class="pill" type="button" data-job="Battery">Battery</button>
+        <button class="pill" type="button" data-job="Jump start">Jump start</button>
+        <button class="pill" type="button" data-job="Won't start">Won't start</button>
+        <button class="pill" type="button" data-job="Tires">Tires</button>
+        <button class="pill" type="button" id="morePill">More services ▾</button>
       </div>
     </section>
     <div class="tabs">
@@ -91,7 +78,7 @@
           <select id="htrade" required=""><option value="">Select</option><option>Mechanic</option><option>Tint</option><option>Tow / roadside</option><option>Detail</option><option>Other</option></select>
           <label>Years experience</label><input id="hyears" inputmode="numeric" autocomplete="off">
           <label>Anything else</label><textarea id="hnote" autocomplete="off" placeholder="Tools, insurance, days you can work..."></textarea>
-          <button class="btn btn-gold btn-full" type="submit">Submit first step</button>
+          <button class="btn btn-gold btn-full" type="submit">Text my first step</button>
         </form>
       </div>
       <div id="hireDone" style="display:none">
@@ -105,25 +92,47 @@
     </section>
     <section class="card" id="hoursBox">
       <h2>Hours & minimums</h2>
-      <p class="meta">Shop 8 AM–6 PM · After 5 / $125 min · Roadside $85 then $125 · Shop about 20% under mobile</p>
-      <div class="pills"><span class="pill" style="cursor:default">Diag from $85</span><span class="pill" style="cursor:default">Labor $150/hr</span></div>
+      <p class="meta">Mon–Fri 8 AM–6 PM · Sat 8 AM–2 PM · After 5 PM $125 min · Roadside $85, $125 after hours · Shop about 20% under mobile</p>
+      <div class="pills"><span class="pill" style="cursor:default">Diag from $85</span><span class="pill" style="cursor:default">Competitive hourly rates</span></div>
     </section>
     <section class="card" id="custBox">
       <div id="formWrap">
         <h2>Request help</h2>
         <form id="req" autocomplete="on">
+          <input class="hp" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <label>Service</label>
-          <input id="job" name="job" type="text" autocomplete="off" placeholder="Tap a service above or type it">
+          <select id="svc" autocomplete="off">
+            <option value="">Choose a service</option>
+            <option data-need="Estimate">Diagnostics / check engine light</option>
+            <option data-need="Estimate">Brakes</option>
+            <option data-need="Mobile service">Battery</option>
+            <option data-need="Roadside / stranded">Jump start</option>
+            <option data-need="Mobile service">Won't start</option>
+            <option data-need="Mobile service">Tires</option>
+            <option data-need="Shop drop-off">Oil change</option>
+            <option data-need="Estimate">A/C repair</option>
+            <option data-need="Estimate">Cooling & overheating</option>
+            <option data-need="Estimate">Starter & alternator</option>
+            <option data-need="Estimate">Suspension</option>
+            <option data-need="Estimate">Window tint</option>
+            <option data-need="Roadside / stranded">Lockout</option>
+            <option data-need="Shop drop-off">Alignment</option>
+            <option value="Other" data-need="Estimate">Other</option>
+          </select>
+          <div id="otherWrap" style="display:none"><label>What service?</label><input id="other" autocomplete="off" placeholder="Tell us what you need"></div>
           <label>I need</label>
           <select id="need" autocomplete="off"><option>Estimate</option><option>Shop drop-off</option><option>Mobile service</option><option>Roadside / stranded</option></select>
           <label>Name</label><input id="name" name="name" type="text" autocomplete="name" required="">
           <label>Phone</label><input id="phone" name="tel" type="tel" autocomplete="tel" required="">
+          <label>VIN (optional, fills in the vehicle for you)</label><input id="vin" maxlength="17" autocomplete="off" autocapitalize="characters" placeholder="17 characters, on the dash or door jamb">
+          <p class="note" id="vinNote" style="display:none"></p>
           <div class="row3">
-            <div><label>Year</label><input id="year" maxlength="4" autocomplete="off"></div>
-            <div><label>Make</label><input id="make" autocomplete="off"></div>
-            <div><label>Model</label><input id="model" autocomplete="off"></div>
+            <div><label>Year</label><select id="year" autocomplete="off"><option value="">Year</option></select></div>
+            <div><label>Make</label><select id="make" autocomplete="off"><option value="">Make</option><option>Acura</option><option>Audi</option><option>BMW</option><option>Buick</option><option>Cadillac</option><option>Chevrolet</option><option>Chrysler</option><option>Dodge</option><option>Fiat</option><option>Ford</option><option>Genesis</option><option>GMC</option><option>Honda</option><option>Hyundai</option><option>Infiniti</option><option>Jaguar</option><option>Jeep</option><option>Kia</option><option>Land Rover</option><option>Lexus</option><option>Lincoln</option><option>Mazda</option><option>Mercedes-Benz</option><option>MINI</option><option>Mitsubishi</option><option>Nissan</option><option>Pontiac</option><option>Porsche</option><option>Ram</option><option>Saturn</option><option>Scion</option><option>Subaru</option><option>Tesla</option><option>Toyota</option><option>Volkswagen</option><option>Volvo</option><option value="Other">Other</option></select></div>
+            <div><label>Model</label><select id="model" autocomplete="off" disabled><option value="">Model</option></select></div>
           </div>
-          <label>VIN (optional)</label><input id="vin" maxlength="17" autocomplete="off">
+          <div id="makeOtherWrap" style="display:none"><label>Make</label><input id="makeOther" autocomplete="off" placeholder="Type the make"></div>
+          <div id="modelOtherWrap" style="display:none"><label>Model</label><input id="modelOther" autocomplete="off" placeholder="Type the model"></div>
           <label>Where is the vehicle?</label>
           <input id="where" name="street-address" autocomplete="street-address">
           <label>Day that works</label>
@@ -133,14 +142,17 @@
           <label>Other day / time note</label>
           <input id="whenote" autocomplete="off">
           <label>What's going on</label><textarea id="what" autocomplete="off" placeholder="Noise, warning light, how long it's been happening..."></textarea>
-          <button class="btn btn-gold btn-full" type="submit">Save request</button>
-          <p class="note">Stays here. Next you pick text, call, portal, or email.</p>
+          <label>Photos (optional)</label>
+          <input id="photos" type="file" accept="image/*" multiple>
+          <p class="note" id="photoNote">VIN sticker, dash lights, leaks, damage. Up to 5.</p>
+          <button class="btn btn-gold btn-full" type="submit" id="sendBtn">Text my request</button>
+          <p class="note">Opens your texts with everything filled in. Just hit send.</p>
         </form>
       </div>
       <div id="done" style="display:none">
         <h2>Request ready</h2>
-        <p class="meta">Nothing went to email unless you tap Email shop.</p>
-        <a class="btn btn-gold btn-full" id="doneText" href="sms:+18284543014?&body=START">24hr text support</a>
+        <p class="meta">Your text app should have opened with your request. If you didn't hit send, tap below. Rather talk? Call us.</p>
+        <a class="btn btn-gold btn-full" id="doneText" href="sms:+18284543014?&body=START">Text my request again</a>
         <a class="btn btn-ghost btn-full" href="tel:+17048352577">Call 704-835-2577</a>
         <a class="btn btn-ghost btn-full" href="https://portal.ari.app/b/kCHD15A2N0Vobeo5jdgZhwQBJTA3">Book online</a>
         <button class="btn btn-ghost btn-full" type="button" id="emailBtn">Email shop (optional)</button>
@@ -149,6 +161,7 @@
     <p class="meta" style="text-align:center">6016 McDaniel Lane Suite D · Charlotte · SpeedyAuto704.com</p>
   </div>
   <script>
+    var custName=document.getElementById('name');
     function showCust(){tabCust.classList.add('on');tabHire.classList.remove('on');custBox.style.display='block';hoursBox.style.display='block';hireBox.style.display='none';formWrap.style.display='block';done.style.display='none'}
     function hireBody(){return 'TECH FIRST STEP\nName: '+hname.value+'\nPhone: '+hphone.value+'\nCity: '+hcity.value+'\nTrade: '+htrade.value+'\nYears: '+hyears.value+'\nNote: '+hnote.value}
     function showHireDone(){
@@ -158,28 +171,120 @@
       hireTrack.href='sms:+18284543014?&body='+encodeURIComponent('TRACK\n'+b);
       hireMore.href='sms:+18284543014?&body='+encodeURIComponent('APPLY MORE\n'+b);
     }
-    function bodyText(){return 'Service: '+job.value+'\nNeed: '+need.value+'\nName: '+name.value+'\nPhone: '+phone.value+'\nYear: '+year.value+'\nMake: '+make.value+'\nModel: '+model.value+'\nVIN: '+vin.value.trim().toUpperCase()+'\nLocation: '+where.value.trim()+'\nPreferred day: '+(day.value||'Flexible')+'\nPreferred time: '+(time.value||'Flexible')+'\nWhen note: '+whenote.value.trim()+'\nProblem: '+what.value;}
+    function yearVal(){return year.value}
+    function makeVal(){return make.value==='Other'?makeOther.value.trim():make.value}
+    function modelVal(){return (model.value==='__other'||make.value==='Other')?modelOther.value.trim():model.value}
+    function jobValue(){return svc.value==='Other'?('Other: '+other.value.trim()):svc.value}
+    function bodyText(){return 'Service: '+jobValue()+'\nNeed: '+need.value+'\nName: '+custName.value+'\nPhone: '+phone.value+'\nYear: '+yearVal()+'\nMake: '+makeVal()+'\nModel: '+modelVal()+'\nVIN: '+vin.value.trim().toUpperCase()+'\nLocation: '+where.value.trim()+'\nPreferred day: '+(day.value||'Flexible')+'\nPreferred time: '+(time.value||'Flexible')+'\nWhen note: '+whenote.value.trim()+'\nProblem: '+what.value;}
+    function saveRequest(){
+      var payload={website:website.value,job:jobValue(),need:need.value,name:custName.value,phone:phone.value,year:yearVal(),make:makeVal(),model:modelVal(),vin:vin.value,where:where.value,day:day.value,time:time.value,whenote:whenote.value,what:what.value};
+      var ctl=('AbortController' in window)?new AbortController():null;
+      if(ctl)setTimeout(function(){ctl.abort()},9000);
+      return fetch('/api/request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true,signal:ctl?ctl.signal:undefined}).then(function(r){return r.json()}).catch(function(){return null});
+    }
+    function shrink(file){
+      return new Promise(function(ok){
+        var img=new Image(),url=URL.createObjectURL(file);
+        img.onload=function(){
+          var max=1600,w=img.width,h=img.height,k=Math.min(1,max/Math.max(w,h));
+          var c=document.createElement('canvas');c.width=Math.round(w*k);c.height=Math.round(h*k);
+          c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+          URL.revokeObjectURL(url);ok(c.toDataURL('image/jpeg',0.8));
+        };
+        img.onerror=function(){URL.revokeObjectURL(url);ok(null)};
+        img.src=url;
+      });
+    }
+    function sendPhotos(saved){
+      var files=[].slice.call(photos.files||[],0,5);
+      if(!saved||!saved.ok||!saved.dealId||!files.length)return Promise.resolve();
+      var i=0;
+      function next(){
+        if(i>=files.length)return Promise.resolve();
+        var n=++i;
+        sendBtn.textContent='Sending photo '+n+' of '+files.length+'...';
+        return shrink(files[n-1]).then(function(data){
+          if(!data)return;
+          return fetch('/api/photo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({dealId:saved.dealId,ts:saved.ts,sig:saved.sig,n:n,image:data})}).catch(function(){});
+        }).then(next);
+      }
+      return next();
+    }
+    (function(){var y=new Date().getFullYear()+1,h='<option value="">Year</option>';for(var i=y;i>=1985;i--)h+='<option>'+i+'</option>';year.innerHTML=h;})();
+    var modelCache={},wantModel='';
+    function setModels(list,pick){
+      var h='<option value="">Model</option>';
+      list.forEach(function(m){h+='<option>'+m.replace(/</g,'&lt;')+'</option>'});
+      h+='<option value="__other">Other / not listed</option>';
+      model.innerHTML=h;model.disabled=false;
+      if(pick){var hit=list.filter(function(m){return m.toLowerCase()===pick.toLowerCase()})[0];if(hit)model.value=hit;else{model.value='__other';modelOther.value=pick;}}
+      modelOtherWrap.style.display=model.value==='__other'?'block':'none';
+    }
+    function loadModels(){
+      makeOtherWrap.style.display=make.value==='Other'?'block':'none';
+      if(make.value==='Other'){model.disabled=true;model.innerHTML='<option value="">Model</option>';modelOtherWrap.style.display='block';return;}
+      modelOtherWrap.style.display='none';
+      if(!year.value||!make.value){model.disabled=true;model.innerHTML='<option value="">Model</option>';return;}
+      var key=year.value+'|'+make.value,pick=wantModel;wantModel='';
+      if(modelCache[key]){setModels(modelCache[key],pick);return;}
+      model.disabled=true;model.innerHTML='<option value="">Loading...</option>';
+      fetch('/api/vehicle?year='+year.value+'&make='+encodeURIComponent(make.value)).then(function(r){return r.json()}).then(function(d){
+        var list=(d&&d.models)||[];modelCache[key]=list;setModels(list,pick);
+      }).catch(function(){setModels([],pick)});
+    }
+    year.onchange=loadModels;make.onchange=loadModels;
+    model.onchange=function(){modelOtherWrap.style.display=model.value==='__other'?'block':'none'};
+    vin.oninput=function(){
+      var v=vin.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+      if(v.length!==17){vinNote.style.display='none';return;}
+      vinNote.style.display='block';vinNote.textContent='Looking up VIN...';
+      fetch('/api/vehicle?vin='+v).then(function(r){return r.json()}).then(function(d){
+        if(!d||!d.ok||!d.year){vinNote.textContent='Couldn\'t read that VIN. Pick the vehicle below.';return;}
+        year.value=d.year;
+        var mk=[].slice.call(make.options).filter(function(o){return o.value.toLowerCase()===String(d.make).toLowerCase()})[0];
+        if(mk){make.value=mk.value;wantModel=d.model;}else{make.value='Other';makeOther.value=d.make;modelOther.value=d.model;}
+        loadModels();
+        vinNote.textContent='Found: '+[d.year,d.make,d.model].filter(Boolean).join(' ');
+      }).catch(function(){vinNote.textContent='Couldn\'t read that VIN. Pick the vehicle below.'});
+    };
     function showDone(){formWrap.style.display='none';done.style.display='block';doneText.href='sms:+18284543014?&body='+encodeURIComponent('START\n'+bodyText())}
     if(sessionStorage.getItem('speedy-card-sent')==='1')showDone();
     if(sessionStorage.getItem('speedy-hire-sent')==='1')showHireDone();
     tabCust.onclick=showCust;
     tabHire.onclick=function(){tabHire.classList.add('on');tabCust.classList.remove('on');custBox.style.display='none';hoursBox.style.display='none';hireBox.style.display='block'};
+    function pickService(v){
+      svc.value=v;
+      var o=svc.options[svc.selectedIndex];
+      need.value=(o&&o.dataset.need)||'Estimate';
+      otherWrap.style.display=svc.value==='Other'?'block':'none';
+      if(!what.value.trim()&&v&&v!=='Other') what.placeholder='Tell us more about '+v.toLowerCase();
+    }
+    svc.onchange=function(){pickService(svc.value)};
     document.getElementById('svcPills').onclick=function(e){
-      var b=e.target.closest('.pill'); if(!b||!b.dataset.job) return;
-      [].forEach.call(document.querySelectorAll('#svcPills .pill'),function(p){p.classList.remove('on')});
-      b.classList.add('on');
+      var b=e.target.closest('.pill'); if(!b) return;
       showCust();
-      job.value=b.dataset.job;
-      need.value=b.dataset.need||'Estimate';
-      if(!what.value.trim()) what.placeholder='Tell us more about '+b.dataset.job.toLowerCase();
       sessionStorage.removeItem('speedy-card-sent');
       document.getElementById('custBox').scrollIntoView({behavior:'smooth',block:'start'});
-      setTimeout(function(){name.focus()},250);
+      if(b.id==='morePill'){setTimeout(function(){svc.focus()},300);return;}
+      [].forEach.call(document.querySelectorAll('#svcPills .pill'),function(p){p.classList.remove('on')});
+      b.classList.add('on');
+      pickService(b.dataset.job);
+      setTimeout(function(){custName.focus()},250);
     };
+    photos.onchange=function(){var n=photos.files.length;photoNote.textContent=n?(Math.min(n,5)+' photo'+(n>1?'s':'')+' ready'+(n>5?' (first 5 will send)':'')):'VIN sticker, dash lights, leaks, damage. Up to 5.'};
     shareBtn.onclick=function(){var d={title:'Speedy Auto Repair',text:'Speedy Auto Charlotte. Text START to 828-454-3014.',url:location.href};if(navigator.share)navigator.share(d).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(location.href);};
-    req.onsubmit=function(e){e.preventDefault();sessionStorage.setItem('speedy-card-sent','1');sessionStorage.setItem('speedy-card-body',bodyText());showDone();};
-    hireReq.onsubmit=function(e){e.preventDefault();sessionStorage.setItem('speedy-hire-sent','1');sessionStorage.setItem('speedy-hire-body',hireBody());showHireDone();};
-    emailBtn.onclick=function(){var body=sessionStorage.getItem('speedy-card-body')||bodyText();location.href='mailto:speedyapointments@gmail.com?subject='+encodeURIComponent((job.value||'estimate')+' request')+'&body='+encodeURIComponent(body);};
+    req.onsubmit=function(e){
+      e.preventDefault();
+      if(!svc.value){svc.focus();return;}
+      sendBtn.disabled=true;sendBtn.textContent='Sending...';
+      sessionStorage.setItem('speedy-card-sent','1');sessionStorage.setItem('speedy-card-body',bodyText());
+      saveRequest().then(sendPhotos).then(function(){
+        sendBtn.disabled=false;sendBtn.textContent='Text my request';
+        showDone();location.href=doneText.href;
+      });
+    };
+    hireReq.onsubmit=function(e){e.preventDefault();sessionStorage.setItem('speedy-hire-sent','1');sessionStorage.setItem('speedy-hire-body',hireBody());showHireDone();location.href=hireText.href;};
+    emailBtn.onclick=function(){var body=sessionStorage.getItem('speedy-card-body')||bodyText();location.href='mailto:speedyapointments@gmail.com?subject='+encodeURIComponent((jobValue()||'estimate')+' request')+'&body='+encodeURIComponent(body);};
   </script>
 </body>
 </html>
